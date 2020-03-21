@@ -1,0 +1,28 @@
+<?php
+
+use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
+Route::get('/', function(){
+    return response()->json(['title' => config('app.name')]);
+});
+
+Route::get('/products', function(){
+    return Product::paginate();
+});
+
+Route::get('/products/{product}', function(Product $product){
+    return $product;
+});
